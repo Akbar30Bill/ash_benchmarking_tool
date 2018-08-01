@@ -6,12 +6,8 @@
 #include <omp.h>
 #include <thread>
 
-<<<<<<< HEAD
-const double ratio = 0.1;
-=======
 const double ratio = 0.00001;
 
->>>>>>> d676c8d5e94880d3b12fbaf188b970b1a820b15d
 const int first_calculations = 5;
 unsigned concurentThreadsSupported = std::thread::hardware_concurrency();
 
