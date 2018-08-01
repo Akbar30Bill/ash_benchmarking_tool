@@ -77,6 +77,7 @@ public:
     singlecore_score = (double)(end - begin)/CLOCKS_PER_SEC;
     return;
   }
+
   void singlethread_calculate()
   {
     for(int i = 0 ; i < first_calculations ; i++)
@@ -89,6 +90,7 @@ public:
     }
     pthread_exit(NULL);
   }
+
   void multicore_calculate()
   {
     clock_t begin = clock();
