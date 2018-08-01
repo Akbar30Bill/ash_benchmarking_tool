@@ -77,7 +77,19 @@ public:
     singlecore_score = (double)(end - begin)/CLOCKS_PER_SEC;
     return;
   }
-  void singlethread_calculate()
+  // void *singlethread_calculate()
+  // {
+  //   for(int i = 0 ; i < first_calculations ; i++)
+  //   {
+  //     make_ash();
+  //   }
+  //   while(!check_good_taste_ash_ratio())
+  //   {
+  //     make_ash();
+  //   }
+  //   pthread_exit(NULL);
+  // }
+  static void *singlethread_calculate_v2(void *threadid)
   {
     for(int i = 0 ; i < first_calculations ; i++)
     {
@@ -95,7 +107,8 @@ public:
     pthread_t threads[concurentThreadsSupported];
     for ( int i = 0 ; i < concurentThreadsSupported ; i++ )
     {
-      pthread_create(&threads[i] , NULL , singlethread_calculate , NULL );
+      pthread_create(&threads[i], NULL, singlethread_calculate_v2, (void *)i);
+      // pthread_create(&threads[i] , NULL , singlethread_calculate , NULL );
     }
     pthread_exit(NULL);
     clock_t end = clock();
@@ -105,6 +118,7 @@ public:
   void benchmark()
   {
     singlecore_calculate();
+    multicore_calculate();
     std::cout << "running singlecore benchmark..." << std::endl;
     std::cout << "Single core Score: " << singlecore_score << std::endl;
     std::cout << "MultiCore Score with " << concurentThreadsSupported << " threads: " << multicore_score << std::endl;
