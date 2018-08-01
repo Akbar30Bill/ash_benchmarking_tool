@@ -95,7 +95,7 @@ public:
     pthread_t threads[concurentThreadsSupported];
     for ( int i = 0 ; i < concurentThreadsSupported ; i++ )
     {
-      pthread_create(&threads[i] , NULL , getOsName , NULL );
+      pthread_create(&threads[i] , NULL , singlethread_calculate , NULL );
     }
     pthread_exit(NULL);
     clock_t end = clock();
